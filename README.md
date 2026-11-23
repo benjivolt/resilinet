@@ -58,7 +58,7 @@ Hospitals don't fail alone. When an outbreak sends 140 patients to a 100-bed hos
 
 ## 🙋 My part
 
-This is [Ben Gershenovich](https://github.com/bgcalisthenics)'s copy of the team repository ([d-safro/DS-X-hackathon-2026](https://github.com/d-safro/DS-X-hackathon-2026)), built by a team of five at the BU Spark! DS+X Hackathon 2026 and Hackachusetts 2026. I built:
+This is [Ben Gershenovich](https://github.com/benjivolt)'s copy of the team repository ([d-safro/DS-X-hackathon-2026](https://github.com/d-safro/DS-X-hackathon-2026)), built by a team of five at the BU Spark! DS+X Hackathon 2026 and Hackachusetts 2026. I built:
 
 - **The weekly SEIR pipeline and bed-need signal** (`pipeline/seir.py`): one simulated week of the epidemic per census tract, turned into the number of people who need a hospital bed, with `S + E + I + R = N` checked every week.
 - **Hospital allocation with overflow rerouting** (`pipeline/il2.py`, `pipeline/analysis.py`): each tract's patients go to its five nearest hospitals within 10 km, weighted by `exp(-distance / 3 km)`; overflow moves to hospitals with free beds, and anyone left over is counted as unmet need (`accepted + unmet = need`).
@@ -77,7 +77,7 @@ This is [Ben Gershenovich](https://github.com/bgcalisthenics)'s copy of the team
 
 ## Contents
 
-[Demo video](#-demo-video) · [My part](#-my-part) · [Try it online](#try-it-online) · [Quick start](#quick-start) · [Try a scenario](#try-a-scenario) · [The problem](#the-problem) · [What it does](#what-it-does) · [How it works](#how-it-works) · [Data](#data) · [Validation](#validation) · [Assumptions and limitations](#assumptions-and-limitations) · [Ethics](#ethics-and-responsibility) · [Architecture](#architecture) · [Built with Kiro](#built-with-kiro) · [Team](#team)
+[Demo video](#-demo-video) · [My part](#-my-part) · [Try it online](#try-it-online) · [Quick start](#quick-start) · [Try a scenario](#try-a-scenario) · [The problem](#the-problem) · [What it does](#what-it-does) · [How it works](#how-it-works) · [Data](#data) · [Validation](#validation) · [Assumptions and limitations](#assumptions-and-limitations) · [Ethics](#ethics-and-responsibility) · [Architecture](#architecture) · [Development documentation](#development-documentation) · [Team](#team)
 
 ## Try it online
 
@@ -94,8 +94,8 @@ You need **Python 3.12 or newer** and **git**. No API keys, no accounts, no inte
 Copy and paste the whole block into a terminal:
 
 ```bash
-git clone https://github.com/d-safro/DS-X-hackathon-2026.git
-cd DS-X-hackathon-2026
+git clone https://github.com/benjivolt/resilinet.git
+cd resilinet
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -105,8 +105,8 @@ python -m streamlit run app/streamlit_app.py
 ### Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/d-safro/DS-X-hackathon-2026.git
-cd DS-X-hackathon-2026
+git clone https://github.com/benjivolt/resilinet.git
+cd resilinet
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
@@ -296,7 +296,6 @@ contracts/               definitions of every object passed between stages
 docs/                    equations, weekly state machine, decisions, walkthrough
 frontend/                SvelteKit website + FastAPI wrapper (the live site)
 seir/                    a second, more detailed daily model
-.kiro/                   Kiro steering files and spec
 ```
 
 | Module | What it does |
@@ -350,17 +349,13 @@ On Windows PowerShell, set the variable first: `$env:PYTHONPATH="."`.
 
 </details>
 
-## Built with Kiro
+## Development documentation
 
-ResiliNet was built in the Kiro IDE, with five to six agents working in parallel on separate parts of the pipeline, and the Fetch, GitHub, Context7, and Exa MCP servers for pulling sources, repository work, library documentation, and research.
+The model equations, interfaces, and validation decisions are documented in:
 
-| Path | What it is |
-|---|---|
-| [.kiro/steering/](.kiro/steering/) | Steering files: product goal, folder layout, technology choices, modeling guardrails |
-| [.kiro/specs/epidemic-hospital-mvp/](.kiro/specs/epidemic-hospital-mvp/) | The first spec: requirements, design, tasks (later superseded by the reconciled documents below) |
-| [AGENTS.md](AGENTS.md) | Rules for every agent and the split into workstreams with file ownership |
-| [docs/agent-prompts/](docs/agent-prompts/README.md) | One implementation prompt per workstream |
-| [architecture.md](architecture.md), [docs/architecture-decisions.md](docs/architecture-decisions.md) | The reconciled specification and the decision log |
+- [Architecture](architecture.md) and the [decision log](docs/architecture-decisions.md)
+- [Model equations](docs/mathematical-model.md) and [weekly state machine](docs/weekly-state-machine.md)
+- [Pipeline contracts](contracts/README.md) and [end-to-end walkthrough](docs/end-to-end-walkthrough.md)
 
 ## Team
 
@@ -370,4 +365,4 @@ ResiliNet was built in the Kiro IDE, with five to six agents working in parallel
 - Benjamin (Ben) Gershenovich
 - Andy
 
-Thanks to BU Spark!, the Mass AI Coalition, Sundai, and Kiro, and to MassGIS and the U.S. Department of Health and Human Services for the public data.
+Thanks to BU Spark!, the Mass AI Coalition, Sundai, and to MassGIS and the U.S. Department of Health and Human Services for the public data.
