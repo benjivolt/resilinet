@@ -1,22 +1,83 @@
-# ResiliNet
+<div align="center">
 
-**A simulation and analysis tool for outbreak surges: it shows how strain spreads through a connected hospital network, and which neighborhoods lose access to care when one hospital fills up or closes.**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:e5484d,55:f76b15,100:1a1a1f&height=210&section=header&text=ResiliNet&fontSize=76&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=When%20one%20hospital%20fills%20up%2C%20who%20loses%20access%20to%20care%3F&descAlignY=58&descSize=19" width="100%" alt="ResiliNet: when one hospital fills up, who loses access to care?"/>
 
-| | |
-|---|---|
-| **Live website** | **<https://resilinet-gztw.onrender.com/>** (no install; the first visit can take about a minute while the free server wakes up) |
-| Demo video | <https://youtu.be/zNkBcC58YjI> |
-| Repository | <https://github.com/d-safro/DS-X-hackathon-2026> |
-| DS+X Devpost | <https://ds-x-hackathon-2026.devpost.com/> |
-| Hackachusetts project page | <https://www.sundai.club/projects/6054f32f-e27c-4e84-b7ed-afc7b917a3fc> |
-| Built at | BU Spark! DS+X Hackathon 2026 and Hackachusetts 2026 |
+<a href="https://resilinet-gztw.onrender.com/"><img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=20&duration=2800&pause=900&color=F76B15&center=true&vCenter=true&width=760&lines=SEIR+epidemic+%E2%86%92+weekly+bed+need+for+230+census+tracts;Distance-weighted+allocation+across+9+Boston+hospitals;Overflow+rerouting+%2B+what-if+closures+and+bed+cuts;Close+a+hospital.+Watch+the+city+respond." alt="SEIR epidemic to weekly bed need, allocation across 9 hospitals, overflow rerouting, what-if closures"/></a>
+
+<p>
+  <a href="https://resilinet-gztw.onrender.com/"><img src="https://img.shields.io/badge/%E2%96%B6%20Live%20demo-resilinet--gztw.onrender.com-e5484d?style=for-the-badge" alt="Live demo"/></a>
+  <a href="https://youtu.be/zNkBcC58YjI"><img src="https://img.shields.io/badge/Demo%20video-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Demo video"/></a>
+  <a href="https://ds-x-hackathon-2026.devpost.com/"><img src="https://img.shields.io/badge/BU%20Spark!-DS%2BX%20Hackathon%202026-003865?style=for-the-badge&logo=devpost&logoColor=white" alt="BU Spark! DS+X Hackathon 2026"/></a>
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Python%203.12-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"/>
+  <img src="https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"/>
+  <img src="https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white" alt="pandas"/>
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/SvelteKit-FF3E00?style=flat-square&logo=svelte&logoColor=white" alt="SvelteKit"/>
+  <img src="https://img.shields.io/badge/MapLibre-396CB2?style=flat-square&logo=maplibre&logoColor=white" alt="MapLibre"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/pytest-73%20passing-0A9EDC?style=flat-square&logo=pytest&logoColor=white" alt="pytest: 73 passing"/>
+</p>
+
+<a href="https://resilinet-gztw.onrender.com/"><img src="docs/assets/readme/demo.gif" width="100%" alt="The live site stepping through eight simulated weeks of an outbreak in Suffolk County"/></a>
+
+<sub>The <a href="https://resilinet-gztw.onrender.com/">live site</a> stepping through eight simulated weeks. Each census tract is coloured by its access-to-care score; the bars on the right show how full each hospital is.</sub>
+
+<br/><br/>
+
+| 🗺️ **230** | 🏥 **9** | 📅 **8** | ✅ **73** |
+|:---:|:---:|:---:|:---:|
+| Suffolk County census tracts | acute-care hospitals | simulated weeks per run | automated tests |
+
+</div>
+
+## 🎬 Demo video
+
+<a href="https://youtu.be/zNkBcC58YjI"><img src="https://img.youtube.com/vi/zNkBcC58YjI/maxresdefault.jpg" width="100%" alt="Watch the ResiliNet demo video on YouTube"/></a>
+
+<p align="center"><a href="https://youtu.be/zNkBcC58YjI"><b>▶ Watch the demo on YouTube</b></a> · <a href="https://resilinet-gztw.onrender.com/"><b>Open the live site</b></a> (the free server can take about a minute to wake up)</p>
+
+## 💡 The idea
+
+<img src="docs/assets/readme/slide_problem.jpg" width="100%" alt="One full hospital becomes everyone's problem: 140 patients arrive at a 100-bed hospital, the extra 40 strain Hospital B, and neighborhoods lose easy access to care"/>
+
+Hospitals don't fail alone. When an outbreak sends 140 patients to a 100-bed hospital, the extra 40 land on its neighbors, and the neighborhoods that relied on the first hospital lose easy access to care. ResiliNet simulates that cascade week by week across Boston, so you can close a hospital or cut its beds mid-surge and see who loses care.
+
+<img src="docs/assets/readme/slide_weekly_loop.jpg" width="100%" alt="How one simulated week works: epidemic, bed need, allocate, stress score before, reroute overflow, stress score after, compare, next week"/>
+
+## 🖥️ Screens
+
+| Scenario lab | Hospitals |
+|:---:|:---:|
+| <img src="docs/assets/readme/scenario_lab.jpg" alt="Scenario lab: close a hospital or cut its beds and compare against the no-event run"/> | <img src="docs/assets/readme/hospitals.jpg" alt="Hospitals view showing how full each hospital is each week"/> |
+| Close a hospital or cut its beds for chosen weeks, then compare against the same run with no events. | How full each of the nine hospitals is, week by week, before and after rerouting. |
+
+## 🙋 My part
+
+This is [Ben Gershenovich](https://github.com/bgcalisthenics)'s copy of the team repository ([d-safro/DS-X-hackathon-2026](https://github.com/d-safro/DS-X-hackathon-2026)), built by a team of five at the BU Spark! DS+X Hackathon 2026 and Hackachusetts 2026. I built:
+
+- **The weekly SEIR pipeline and bed-need signal** (`pipeline/seir.py`): one simulated week of the epidemic per census tract, turned into the number of people who need a hospital bed, with `S + E + I + R = N` checked every week.
+- **Hospital allocation with overflow rerouting** (`pipeline/il2.py`, `pipeline/analysis.py`): each tract's patients go to its five nearest hospitals within 10 km, weighted by `exp(-distance / 3 km)`; overflow moves to hospitals with free beds, and anyone left over is counted as unmet need (`accepted + unmet = need`).
+- **Scenario events** (`pipeline/injections.py`): closing a hospital or cutting its beds over a chosen range of weeks, with patients already in a closed hospital kept and reported as an inherited deficit.
 
 > **ResiliNet is a research simulation, not a medical decision-making system.**
 > It does not give emergency, triage, dispatch, or hospital-planning advice, and it does not tell anyone where real patients should go.
 
+| Links | |
+|---|---|
+| Live website | <https://resilinet-gztw.onrender.com/> |
+| Demo video | <https://youtu.be/zNkBcC58YjI> |
+| Team repository | <https://github.com/d-safro/DS-X-hackathon-2026> |
+| DS+X Devpost | <https://ds-x-hackathon-2026.devpost.com/> |
+| Hackachusetts project page | <https://www.sundai.club/projects/6054f32f-e27c-4e84-b7ed-afc7b917a3fc> |
+
 ## Contents
 
-[Try it online](#try-it-online) · [Quick start](#quick-start) · [Try a scenario](#try-a-scenario) · [The problem](#the-problem) · [What it does](#what-it-does) · [How it works](#how-it-works) · [Data](#data) · [Validation](#validation) · [Assumptions and limitations](#assumptions-and-limitations) · [Ethics](#ethics-and-responsibility) · [Architecture](#architecture) · [Built with Kiro](#built-with-kiro) · [Team](#team)
+[Demo video](#-demo-video) · [My part](#-my-part) · [Try it online](#try-it-online) · [Quick start](#quick-start) · [Try a scenario](#try-a-scenario) · [The problem](#the-problem) · [What it does](#what-it-does) · [How it works](#how-it-works) · [Data](#data) · [Validation](#validation) · [Assumptions and limitations](#assumptions-and-limitations) · [Ethics](#ethics-and-responsibility) · [Architecture](#architecture) · [Built with Kiro](#built-with-kiro) · [Team](#team)
 
 ## Try it online
 
